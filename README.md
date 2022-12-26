@@ -2,13 +2,20 @@
 
 This repo contains the Kotlin class `PhiNumber` for computations in the field ℚ[√5], including conversion to and from base φ (i.e., the golden ratio). There are also functions for calculating powers of φ, calculating Fibonacci numbers, and reducing fractions.
 
-## typealias BigFraction
+## Typealias BigFraction
 
 Helper class representing a fraction of two BigIntegers.
 
     typealias BigFraction = Pair<BigInteger, BigInteger>
 
-## class PhiNumber
+Predefined values:
+
+    val FRACTION_ZERO = Pair(ZERO, ONE)
+    val FRACTION_ONE = Pair(ONE, ONE)
+    val FRACTION_INFINITY = Pair(ONE, ZERO)
+    val FRACTION_MU = Pair(ZERO, ZERO)
+
+## Class PhiNumber
 
 ### Constructors
 
@@ -41,6 +48,20 @@ BigFractions that represent the PhiNumber as `a + b * φ`. They are given in red
 ### Properties r, s
 
 BigFractions that represent the PhiNumber as `r + s * √5`. They are given in reduced form with non-negative denominators.
+
+### Property parseResult
+
+When constructing a PhiNumber by parsing a string, this property will contain information from the parser. It can be a combination of the following:
+
+    val IS_NUMBER = 0x0001
+    val IS_COMPLEMENT = 0x0002
+    val IS_FRACTION = 0x0004
+    val IS_MIXED = 0x0008
+    val IS_CONTINUED = 0x0010
+    val IS_EGYPTIAN = 0x0020
+    val IS_ANY_FRACTION = IS_FRACTION or IS_MIXED or IS_CONTINUED or IS_EGYPTIAN
+    val NONSTANDARD_DIGIT = 0x0100
+    val INVALID_CHAR = 0x0200
 
 ### Operators
 
@@ -92,6 +113,14 @@ Return representations in base φ as a (proper or improper) fraction, as a mixed
 Reduces the internal representation. Only needed if you modify any of `aNumer bNumer denom` directly.
 
     fun reduce()
+
+### Predefined values
+
+    val PHI_ZERO = PhiNumber(ZERO)
+    val PHI_ONE = PhiNumber(ONE)
+    val PHI = PhiNumber(ZERO, ONE)
+    val INV_PHI = PhiNumber(-ONE, ONE) /* PHI^-1 */
+    val PHI_INFINITY = PhiNumber(ONE, ZERO, ZERO)
 
 ## Extension functions for other classes
 
