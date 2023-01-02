@@ -2,6 +2,8 @@
 
 This repo contains the Kotlin class `PhiNumber` for computations in the field ℚ[√5], including conversion to and from base φ (i.e., the golden ratio). There are also functions for calculating powers of φ, calculating Fibonacci numbers, and reducing fractions.
 
+**Please feel free to create a new issue if you want more functionality!**
+
 ## Typealias BigFraction
 
 Helper class representing a fraction of two BigIntegers.
@@ -142,7 +144,7 @@ Reduces the internal representation. Only needed if you modify any of `aNumer bN
 
 Calculates the `n`th power of φ or of −φ.
 
-    fun phiPower(n: Int, negative: Boolean): PhiNumber
+    fun phiPower(n: Int, negative: Boolean = false): PhiNumber
 
 ### Function fibonacci
 
